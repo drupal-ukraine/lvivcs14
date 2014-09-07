@@ -13,7 +13,7 @@
  * @ingroup views_row_plugins
  */
 class views_nivo_slider_plugin_row_nivo_sliderfields extends views_plugin_row {
-  function option_definition() {
+  public function option_definition() {
     $options = parent::option_definition();
     $options['image_field'] = array('default' => '');
     $options['title_field'] = array('default' => '');
@@ -21,7 +21,7 @@ class views_nivo_slider_plugin_row_nivo_sliderfields extends views_plugin_row {
     return $options;
   }
 
-  function options_form(&$form, &$form_state) {
+  public function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
 
     // Pre-build all of our option lists for the dials and switches that follow.
