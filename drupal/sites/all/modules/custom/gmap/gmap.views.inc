@@ -71,25 +71,15 @@ function template_preprocess_gmap_views_view_gmapextended(&$vars) {
       $markers[$i][$purpose] .= $row[$field];
     }
   }
-  /*
-  foreach ($options['field_purposes'] as $field => $purpose) {
-    foreach ($renders as $i => $row) {
-      if (!isset($markers[$i][$purpose])) {
-        $markers[$i][$purpose] = '';
-      }
-      $markers[$i][$purpose] .= $row[$field];
-    }
-  }
-  */
 
   foreach ($markers as $offset => $marker) {
-    // Set up 'opts' array to make tooltips work
+    //Set up 'opts' array to make tooltips work
     $markers[$offset]['opts'] = array('title' => isset($marker['title']) ? decode_entities($marker['title']) : NULL);
 
     switch ($options['clickmode']) {
       case 'render':
         $markers[$offset]['text'] = $vars['result'][$offset];
-      //fallthrough
+      //@@@ fallthrough
       case 'text':
         unset ($markers[$offset]['link']);
         unset ($markers[$offset]['rmt']);
@@ -126,14 +116,6 @@ function template_preprocess_gmap_views_view_gmapextended(&$vars) {
     }
   }
 
-  // @@@ add rest of handling
-  /*
-  if ($options['markers'] == 'static') {
-    foreach ($markers as $offset => $marker) {
-      $markers[$offset]['markername'] = $options['markertype'];
-    }
-  }
-  */
 
   // Marker cleanup
   foreach ($markers as $offset => $marker) {
