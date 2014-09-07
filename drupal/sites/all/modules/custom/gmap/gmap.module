@@ -78,6 +78,7 @@ function gmap_module_invoke($op, &$map) {
 function gmap_gmap($op, &$map) {
   switch ($op) {
     case 'macro':
+      // @codingStandardsIgnoreStart
       return array(
         'points' => array(
           'multiple' => TRUE,
@@ -92,8 +93,10 @@ function gmap_gmap($op, &$map) {
           'multiple' => TRUE,
         ),
       );
+      // @codingStandardsIgnoreEnd
 
     case 'pre_theme_map':
+
       break;
 
     case 'macro_multiple':
@@ -151,9 +154,6 @@ function gmap_gmap($op, &$map) {
           'default' => FALSE,
           'help' => t('Enabling this will work around some issues that can occur when maps appear inside collapsible fieldsets.'),
         ),
-
-        // Note to myself, who keeps forgetting what a scale control actually IS.:
-        // |------------  1mi ------------|
         'scale' => array(
           'title' => t('Add scale control to map.'),
           'default' => FALSE,
