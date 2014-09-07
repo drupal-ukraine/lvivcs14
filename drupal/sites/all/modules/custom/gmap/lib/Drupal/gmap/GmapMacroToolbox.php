@@ -64,7 +64,7 @@ class GmapMacroToolbox {
    *
    * former _gmap_parse_style($style)
    */
-  public function setStyle($style){
+  public function setStyle($style) {
     $this->style = $style;
     return $this;
   }
@@ -74,7 +74,7 @@ class GmapMacroToolbox {
    *
    * former _gmap_parse_style($style)
    */
-  public function getParsedStyles(){
+  public function getParsedStyles() {
     if (strpos($this->style, '/') === FALSE) {
       // Style ref.
       return $this->style;
@@ -110,7 +110,7 @@ class GmapMacroToolbox {
    *
    * former _gmap_str2coord($str)
    */
-  public function setCoordString($str){
+  public function setCoordString($str) {
     $this->coordString = $str;
     return $this;
   }
@@ -121,7 +121,7 @@ class GmapMacroToolbox {
    *
    * former _gmap_str2coord($str)
    */
-  public function getCoord(){
+  public function getCoord() {
     // Explode along + axis
     $arr = explode('+', $this->coordString);
     // Explode along , axis
@@ -140,7 +140,7 @@ class GmapMacroToolbox {
    *
    * former _gmap_parse_macro($instring, $ver = 2)
    */
-  public function setMacroString($instring, $ver = 2){
+  public function setMacroString($instring, $ver = 2) {
     $this->macroString = $instring;
     $this->parserVersion = $ver;
     return $this;
@@ -156,7 +156,7 @@ class GmapMacroToolbox {
     // Get a list of keys that are "multiple."
     $m = array();
     $multiple = gmap_module_invoke('macro_multiple', $m);
-    include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php');
+    include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php';
     $def = GmapDefaults::getInstance()->getDefaults();
 
     // Remove leading and trailing tags
@@ -217,7 +217,7 @@ class GmapMacroToolbox {
     if (isset($m['style']) && is_array($m['style'])) {
       foreach ($m['style'] as $k => $v) {
         $temp = explode(':', $v);
-        include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+        include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
         $m['styles'][$temp[0]] = GmapMacroToolbox::getInstance()->setStyle($temp[1])->getParsedStyles();
       }
       unset($m['style']);
@@ -241,7 +241,7 @@ class GmapMacroToolbox {
         $cp = strpos($shape, ':');
         if ($cp !== FALSE) {
           $stylestr = substr($shape, 0, $cp);
-          include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+          include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
           $s['style'] = GmapMacroToolbox::getInstance()->setStyle($stylestr)->getParsedStyles();
           $shape = substr($shape, $cp + 1);
         }
@@ -250,7 +250,7 @@ class GmapMacroToolbox {
         if (isset($tmp[2]) && $tmp[2]) {
           $s['numpoints'] = trim($tmp[2]);
         }
-        include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+        include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
         $tmp = GmapMacroToolbox::getInstance()->setCoordString($tmp[0])->getCoord();
         $s['center'] = $tmp[0];
         $m['shapes'][] = $s;
@@ -286,11 +286,11 @@ class GmapMacroToolbox {
         $cp = strpos($shape, ':');
         if ($cp != FALSE) {
           $stylestr = substr($shape, 0, $cp);
-          include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+          include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
           $s['style'] = GmapMacroToolbox::getInstance()->setStyle($stylestr)->getParsedStyles();
           $shape = substr($shape, $cp + 1);
         }
-        include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+        include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
         $s['points'] = GmapMacroToolbox::getInstance()->setCoordString($shape)->getCoord();
         $m['shapes'][] = $s;
       }
@@ -302,7 +302,7 @@ class GmapMacroToolbox {
         $cp = strpos($shape, ':');
         if ($cp !== FALSE) {
           $stylestr = substr($shape, 0, $cp);
-          include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+          include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
           $s['style'] = GmapMacroToolbox::getInstance()->setStyle($stylestr)->getParsedStyles();
           $shape = substr($shape, $cp + 1);
         }
@@ -312,7 +312,7 @@ class GmapMacroToolbox {
           $tmp = array_slice($tmp, 0, 2);
         }
         $shape = implode('+', $tmp);
-        include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+        include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
         $tmp = GmapMacroToolbox::getInstance()->setCoordString($shape)->getCoord();
         $s['center'] = $tmp[0];
         $s['point2'] = $tmp[1];
@@ -326,11 +326,11 @@ class GmapMacroToolbox {
         $cp = strpos($shape, ':');
         if ($cp !== FALSE) {
           $stylestr = substr($shape, 0, $cp);
-          include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+          include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
           $s['style'] = GmapMacroToolbox::getInstance()->setStyle($stylestr)->getParsedStyles();
           $shape = substr($shape, $cp + 1);
         }
-        include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+        include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
         $s['points'] = GmapMacroToolbox::getInstance()->setCoordString($shape)->getCoord();
         $m['shapes'][] = $s;
       }
@@ -429,7 +429,8 @@ class GmapMacroToolbox {
     foreach ($m['markers-temp'] as $t) {
       unset($markername);
       // Named?
-      if (strpos($t, '::')) { // Single : gets handled below.
+      if (strpos($t, '::')) {
+        // Single : gets handled below.
         list($markername, $t) = explode('::', $t, 2);
       }
       // Break down into points

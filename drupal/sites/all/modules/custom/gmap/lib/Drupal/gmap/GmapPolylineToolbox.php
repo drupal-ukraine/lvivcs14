@@ -90,7 +90,7 @@ class GmapPolylineToolbox {
    * former gmap_polyutil_encode_latlon($x)
    */
 
-  function setLatLonNumber($x) {
+  public function setLatLonNumber($x) {
     $this->latlonNumber = $x;
     return $this;
   }
@@ -100,7 +100,7 @@ class GmapPolylineToolbox {
    * @return string
    */
 
-  function getEncodedLatLon() {
+  public function getEncodedLatLon() {
     $this->latlonNumber = round($this->latlonNumber * 1e5) << 1;
     if ($this->latlonNumber < 0) {
       $this->latlonNumber = ~($this->latlonNumber);
@@ -113,7 +113,7 @@ class GmapPolylineToolbox {
    * former gmap_polyutil_encode_latlon($x)
    * @return string
    */
-  function getEncodedLevels() {
+  public function getEncodedLevels() {
     $this->latlonLevels = $this->setLatLonNumber(abs($this->latlonNumber))->getEncode();
     return $this->latlonLevels;
   }
@@ -122,7 +122,7 @@ class GmapPolylineToolbox {
    * former _gmap_polyutil_encode($x)
    * @return string
    */
-  function getEncode() {
+  public function getEncode() {
     $this->encoded = '';
     while ($this->latlonNumber >= 32) {
       $this->encoded .= chr((32 | ($this->latlonNumber & 31)) + 63);
@@ -138,7 +138,7 @@ class GmapPolylineToolbox {
    * @param $p2
    * @return $this
    */
-  function setLinePoints($p1, $p2) {
+  public function setLinePoints($p1, $p2) {
     $this->startPoint = $p1;
     $this->endPoint = $p2;
     return $this;
@@ -149,7 +149,7 @@ class GmapPolylineToolbox {
    * √((x1-x0)^2 + (y1-y0)^2)
    * former gmap_polyutil_dist($p1, $p2)
    */
-  function getDist() {
+  public function getDist() {
     $this->distance = sqrt(pow($this->endPoint[0] - $this->startPoint[0], 2) + pow($this->endPoint[1] - $this->startPoint[1], 2));
     return $this->distance;
   }
@@ -159,7 +159,7 @@ class GmapPolylineToolbox {
    * @param $q
    * @return $this
    */
-  function setMeasurePoint($q) {
+  public function setMeasurePoint($q) {
     $this->measurePoint = $q;
     return $this;
   }
@@ -169,7 +169,7 @@ class GmapPolylineToolbox {
    * former gmap_polyutil_point_line_dist()
    * @return float
    */
-  function getPointLineDist() {
+  public function getPointLineDist() {
     if ($this->startPoint[0] == $this->endPoint[0] && $this->startPoint[1] == $this->endPoint[1]) {
       // lp1 and lp2 are the same point--they don't define a line--so we return
       // the distance between two points.
@@ -182,13 +182,16 @@ class GmapPolylineToolbox {
     //   http://www.codeguru.com/forum/printthread.php?t=194400
     $u = (($this->endPoint[1] - $this->startPoint[1]) * ($this->measurePoint[1] - $this->startPoint[1]) + ($this->endPoint[0] - $this->startPoint[0]) * ($this->measurePoint[0] - $this->startPoint[0])) / (pow($this->endPoint[1] - $this->startPoint[1], 2) + pow($this->endPoint[0] - $this->startPoint[0], 2));
 
-    if ($u <= 0) { // point is not alongside segment, it is further off in $p1's direction
+    if ($u <= 0) {
+      // point is not alongside segment, it is further off in $p1's direction
       return $this->setLinePoints($this->measurePoint, $this->startPoint)->getDist();
     }
-    elseif ($u >= 1) { // point is not alongside segment, it is further off in $p2's direction
+    elseif ($u >= 1) {
+      // point is not alongside segment, it is further off in $p2's direction
       return $this->setLinePoints($this->measurePoint, $this->endPoint)->getDist();
     }
-    else { // point is alongside segment
+    else {
+      // point is alongside segment
       // calculate distance between q and the nearest point on the line segment
       // use $u to calculate the nearest point on the line segment:
       //   p1 + u*(p2 - p1) => [p1x + u*(p2x - p1x), p1y + u*(p2y - p1y)]
@@ -222,7 +225,7 @@ class GmapPolylineToolbox {
    *   algorithm - they will not have entries in the return array. The "weights"
    *   are actually the point's distance from the line segment that it subdivides.
    */
-  function getDPEncode() {
+  public function getDPEncode() {
     $this->pointWeights = array();
     $max_i = 0;
 
@@ -274,7 +277,7 @@ class GmapPolylineToolbox {
    *   An array containing the point and zoom information necessary to display
    *   encoded polylines on Google Maps: 'points', 'levels', 'numLevels', and 'zoomFactor'.
    */
-  function getPolyline() {
+  public function getPolyline() {
     $points_encoded = '';
     $levels_encoded = '';
 
@@ -307,7 +310,7 @@ class GmapPolylineToolbox {
    *
    * @return mixed
    */
-  function getZoomLevels() {
+  public function getZoomLevels() {
     if (!isset(self::$levels)) {
       for ($i = 0; $i < self::GMAP_ZOOM_LEVELS; $i++) {
         self::$levels[$i] = self::GMAP_DP_EPSILON * pow(self::GMAP_ZOOM_FACTOR, self::GMAP_ZOOM_LEVELS - $i - 1);
@@ -321,7 +324,7 @@ class GmapPolylineToolbox {
    * @param $weight
    * @return $this
    */
-  function setWeight($weight) {
+  public function setWeight($weight) {
     $this->weight = $weight;
     return $this;
   }
@@ -334,7 +337,7 @@ class GmapPolylineToolbox {
    *
    * @return int
    */
-  function getZoomLevel() {
+  public function getZoomLevel() {
     $i = 0;
     while (self::$levels[$i] > $this->weight) {
       $i++;
@@ -342,4 +345,4 @@ class GmapPolylineToolbox {
     return self::GMAP_ZOOM_LEVELS - $i - 1;
   }
 
-} 
+}

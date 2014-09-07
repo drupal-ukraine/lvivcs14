@@ -68,18 +68,27 @@ class GmapDefaults {
     // @see https://developers.google.com/maps/documentation/javascript/basics#Localization
     global $language;
     switch ($language->language) {
-      case 'zh-hans': // 'Chinese, Simplified'
+      // 'Chinese, Simplified'
+      case 'zh-hans':
         $langcode = 'zh-CN';
         break;
-      case 'zh-hant': // 'Chinese, Traditional'
+
+        // 'Chinese, Traditional'
+      case 'zh-hant':
         $langcode = 'zh-TW';
         break;
-      case 'he': // Hebrew
+
+        // Hebrew
+      case 'he':
         $langcode = 'iw';
         break;
-      case 'nb': // 'Norwegian Bokm�l', 'Bokm�l'
-      case 'nn': // 'Norwegian Nynorsk', 'Nynorsk'
-        $langcode = 'no'; // 'Norwegian'
+
+      // 'Norwegian Bokm�l', 'Bokm�l'
+      case 'nb':
+      // 'Norwegian Nynorsk', 'Nynorsk'
+      case 'nn':
+      // 'Norwegian'
+        $langcode = 'no';
         break;
 
       default:
