@@ -75,11 +75,10 @@ function template_preprocess_gmap_views_view_gmapextended(&$vars) {
   foreach ($markers as $offset => $marker) {
     //Set up 'opts' array to make tooltips work
     $markers[$offset]['opts'] = array('title' => isset($marker['title']) ? decode_entities($marker['title']) : NULL);
-
+    // fallthrough
     switch ($options['clickmode']) {
       case 'render':
         $markers[$offset]['text'] = $vars['result'][$offset];
-      //@@@ fallthrough
       case 'text':
         unset ($markers[$offset]['link']);
         unset ($markers[$offset]['rmt']);
@@ -115,8 +114,6 @@ function template_preprocess_gmap_views_view_gmapextended(&$vars) {
         break;
     }
   }
-
-
   // Marker cleanup
   foreach ($markers as $offset => $marker) {
     $marker['latitude'] = isset($marker['latitude']) ? (float) $marker['latitude'] : NULL;

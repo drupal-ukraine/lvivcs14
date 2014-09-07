@@ -258,7 +258,7 @@ class gmap_plugin_style_gmapextended extends views_plugin_style {
       '#description' => t('Set a fallback value if you want to use a static offset. Leave blank if you want automatic assignment.'),
       '#default_value' => isset($default['offset']) ? $default['offset'] : '',
     );
-////////////////////////// Form stuff below this line needs attention.
+// Form stuff below this line needs attention.
     $form['macro'] = array(
       '#type' => 'textarea',
       '#title' => t('Macro'),

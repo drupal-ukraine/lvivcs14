@@ -59,7 +59,8 @@ function _gmap_get_icondata() {
           'f' => array(),
           'w' => array(),
           'h' => array(),
-          'i' => array(), // Sets of sets.
+           // Sets of sets.
+          'i' => array(),
         );
 
         // Part 1: Collect image names.
@@ -191,7 +192,7 @@ function _gmap_compress_icon_def($iconset) {
     'transparent',
   );
   $ints = array(3 => TRUE, 4 => TRUE, 5 => TRUE, 6 => TRUE);
-  $nulls = array('', '', array(), 0, 0, 0, 0, '', '', '', '', '',);
+  $nulls = array('', '', array(), 0, 0, 0, 0, '', '', '', '', '');
 
   $a = array();
   for ($c0 = 0; $c0 < count($order); $c0++) {
