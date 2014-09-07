@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Canada.
+ */
+
+/**
+ * Returns an associative array of states/territories.
+ */
 function location_province_list_ca() {
   return array(
     'AB' => 'Alberta',

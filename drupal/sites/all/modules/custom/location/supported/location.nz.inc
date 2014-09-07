@@ -1,6 +1,9 @@
 <?php
 
-// New Zealand
+/**
+ * @file
+ * New Zealand.
+ */
 
 /**
  * Returns an associative array of states/territories where

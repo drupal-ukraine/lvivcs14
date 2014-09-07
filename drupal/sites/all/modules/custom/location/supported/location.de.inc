@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * Deutschland.
+ */
+
+/**
+ * Returns an associative array of states/territories.
+ */
 function location_province_list_de() {
   return array(
     'BB' => 'Brandenburg',

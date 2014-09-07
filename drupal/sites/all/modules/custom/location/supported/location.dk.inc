@@ -1,7 +1,13 @@
 <?php
 
-// Denmark
+/**
+ * @file
+ * Denmark.
+ */
 
+/**
+ * Returns an associative array of states/territories.
+ */
 function location_province_list_dk() {
   return array(
     'CC' => "Copenhagen (municipality)",

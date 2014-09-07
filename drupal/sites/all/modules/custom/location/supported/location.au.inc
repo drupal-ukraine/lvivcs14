@@ -1,23 +1,12 @@
 <?php
 
-// Australia
+/**
+ * @file
+ * Australia.
+ */
 
 /**
- * Returns a lat/lon pair of the approximate center of the given postal code in the given country
- *
- * @param $location
- *   An associative array $location where
- *     'street'       => the street portion of the location
- *     'supplemental' => additional street portion of the location
- *     'province'     => the province, state, or territory
- *     'country'      => lower-cased two-letter ISO code (REQUIRED)
- *     'postal_code'  => the international postal code for this location (REQUIRED)
- *
- * @return
- *   An associative array where
- *      'lat' => approximate latitude of the center of the postal code's area
- *      'lon' => approximate longitude of the center of the postal code's area
- *
+ * Returns an associative array of states/territories.
  */
 function location_latlon_rough_au($location = array()) {
   if (!isset($location['postal_code'])) {
