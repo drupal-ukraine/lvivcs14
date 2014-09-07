@@ -806,7 +806,6 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
           );
         // @codingStandardsIgnoreEnd
 
-
         // @codingStandardsIgnoreStart
         // Additional is linked to street.
         case 'additional':
