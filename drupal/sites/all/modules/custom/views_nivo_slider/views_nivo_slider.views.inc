@@ -1,7 +1,6 @@
 <?php
-
 /**
- * @file views_nivo_slider.views.inc
+ * @file
  * Provide the views nivo slider plugin definition.
  */
 
