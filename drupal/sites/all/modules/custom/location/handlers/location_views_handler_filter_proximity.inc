@@ -9,7 +9,7 @@ class location_views_handler_filter_proximity extends views_handler_filter {
   /**
    * This is always multiple, because we can have distance, units etc.
    */
-  var $always_multiple = TRUE;
+  public $always_multiple = TRUE;
 
   public function option_definition() {
     $options = parent::option_definition();

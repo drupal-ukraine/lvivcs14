@@ -73,7 +73,8 @@ class location_handler_filter_location_country extends views_handler_filter_in_o
       '#options' => $options,
       // Used by province autocompletion js.
       '#attributes' => array('class' => array('location_auto_country')),
-      '#multiple' => TRUE, // views will change this as necessary when exposed.
+      // Views will change this as necessary when exposed.
+      '#multiple' => TRUE,
     );
 
     // Let location_autocomplete.js find the correct fields to attach.
@@ -100,7 +101,6 @@ class location_handler_filter_location_country extends views_handler_filter_in_o
     if (empty($this->options['exposed'])) {
       return TRUE;
     }
-
 
     if (!empty($this->options['expose']['use_operator']) && !empty($this->options['expose']['operator_id']) && isset($input[$this->options['expose']['operator_id']])) {
       $this->operator = $input[$this->options['expose']['operator_id']];

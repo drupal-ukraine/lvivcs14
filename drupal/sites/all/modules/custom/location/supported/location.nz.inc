@@ -214,7 +214,7 @@ function _location_latlon_exact_nz_geocoder($location = array()) {
     ) {
       $location_string = $location['street'] . ', ' . $location['city'] . ', ' . $location['province'];
     }
-    else { // else geocoder.us won't do bidness with you!
+    else {
       return NULL;
     }
   }

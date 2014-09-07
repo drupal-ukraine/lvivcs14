@@ -7,8 +7,8 @@
 
 class location_handler_filter_location_province extends views_handler_filter {
 
-  var $location_country = FALSE;
-  var $location_country_identifier = FALSE;
+  public $location_country = FALSE;
+  public $location_country_identifier = FALSE;
 
   public function option_definition() {
     $options = parent::option_definition();
@@ -56,7 +56,7 @@ class location_handler_filter_location_province extends views_handler_filter {
         '#maxlength' => 64,
         // Used by province autocompletion js.
         '#attributes' => array('class' => array('location_auto_province')),
-        '#multiple' => TRUE, //$this->options['multiple'],
+        '#multiple' => TRUE,
       );
 
       // Let location_autocomplete.js find the correct fields to attach.
@@ -141,7 +141,6 @@ class location_handler_filter_location_province extends views_handler_filter {
 
     $this->ensure_my_table();
     $field = "$this->table_alias.$this->real_field";
-
 
     if (is_array($value)) {
       // Multiple values.
