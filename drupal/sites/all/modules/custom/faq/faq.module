@@ -526,18 +526,22 @@ function new_faq_page($tid = 0, $faq_display = '', $category_display = '') {
         include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.questions_top.inc';
         $output = theme('faq_questions_top', array('data' => $data));
         break;
+
       case 'hide_answer':
         include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.hide_answer.inc';
         $output = theme('faq_hide_answer', array('data' => $data));
         break;
+
       case 'questions_inline':
         include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.questions_inline.inc';
         $output = theme('faq_questions_inline', array('data' => $data));
         break;
+
       case 'new_page':
         include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.new_page.inc';
         $output = theme('faq_new_page', array('data' => $data));
         break;
+
     // End of switch.
     }
   }
@@ -703,21 +707,24 @@ function _display_faq_by_category($faq_display, $category_display, $term, $displ
       $output .= theme('faq_category_questions_top', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       $output_answers .= theme('faq_category_questions_top_answers', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       break;
+
     case 'hide_answer':
       include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.hide_answer.inc';
       $output .= theme('faq_category_hide_answer', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       break;
+
     case 'questions_inline':
       include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.questions_inline.inc';
       $output .= theme('faq_category_questions_inline', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       break;
+
     case 'new_page':
       include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.new_page.inc';
       $output .= theme('faq_category_new_page', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       break;
-  // End of switch (faq_display).
-  }
 
+    // End of switch (faq_display).
+  }
 
   // Handle indenting of categories.
   while ($depth > 0) {
@@ -838,7 +845,8 @@ function faq_block_view($delta) {
         }
       }
       break;
-  // End switch($delta).
+
+    // End switch($delta).
   }
 
   return $block;
