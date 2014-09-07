@@ -87,7 +87,6 @@ function template_preprocess_faq_category_questions_inline(&$variables) {
     $show_term_page_children = TRUE;
   }
 
-
   // Configure "back to top" link.
   $back_to_top = faq_init_back_to_top($this_page);
 

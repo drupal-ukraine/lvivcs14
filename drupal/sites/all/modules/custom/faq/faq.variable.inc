@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * @file
+ * Variales for FAQ module.
+ */
+
+/**
  * Implements hook_variable_info().
  */
 function faq_variable_info($options) {

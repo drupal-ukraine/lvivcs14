@@ -18,7 +18,9 @@ function faq_help($path, $arg) {
         '<p>' . t("To create a question and answer, the user must create a 'FAQ' node (Create content >> FAQ).  This screen allows the user to edit the question and answer text.  If the 'Taxonomy' module is enabled and there are some terms configured for the FAQ node type, it will also be possible to put the questions into different categories when editing.") . '</p>' .
         '<p>' . t("The 'Frequently Asked Questions' settings configuration screen will allow users with 'administer faq' permissions to specify different layouts of the questions and answers.") . '</p>' .
         '<p>' . t("All users with 'view faq page' permissions will be able to view the generated FAQ page.") . '</p>';
+      // @codingStandardsIgnoreStart
       return $output;
+      // @codingStandardsIgnoreEnd
     case 'admin/modules#description':
       return t('Allows the user to configure the layout of questions and answers on a FAQ page.');
   }
@@ -250,7 +252,6 @@ function new_faq_form($node, $form_state) {
     field_attach_form('node', $node, $form, $form_state, $node->language);
   }
 
-//  dpm($form);
   return $form;
 }
 
@@ -457,7 +458,6 @@ function new_faq_page($tid = 0, $faq_display = '', $category_display = '') {
     }
   }
 
-
   if (empty($faq_display)) {
     $faq_display = variable_get('faq_display', 'questions_top');
   }
@@ -518,40 +518,33 @@ function new_faq_page($tid = 0, $faq_display = '', $category_display = '') {
       $query->condition('n.language', i18n_select_langcodes());
     }
 
-
     // Only need the nid column.
     $nids = $query->execute()->fetchCol();
     $data = node_load_multiple($nids);
-
     switch ($faq_display) {
       case 'questions_top':
         include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.questions_top.inc';
         $output = theme('faq_questions_top', array('data' => $data));
         break;
-
       case 'hide_answer':
         include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.hide_answer.inc';
         $output = theme('faq_hide_answer', array('data' => $data));
         break;
-
       case 'questions_inline':
         include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.questions_inline.inc';
         $output = theme('faq_questions_inline', array('data' => $data));
         break;
-
       case 'new_page':
         include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.new_page.inc';
         $output = theme('faq_new_page', array('data' => $data));
         break;
-
-    } // End of switch.
+    // End of switch.
+    }
   }
-
 
   // Categorize questions.
   else {
     $hide_child_terms = variable_get('faq_hide_child_terms', FALSE);
-
 
     // If we're viewing a specific category/term.
     if (!empty($tid)) {
@@ -568,7 +561,6 @@ function new_faq_page($tid = 0, $faq_display = '', $category_display = '') {
         return;
       }
     }
-
 
     $list_style = variable_get('faq_category_listing', 'ul');
     $vocabularies = taxonomy_get_vocabularies('faq');
@@ -596,21 +588,17 @@ function new_faq_page($tid = 0, $faq_display = '', $category_display = '') {
           $tree = taxonomy_get_tree($vid, 0, NULL, TRUE);
         }
         foreach ($tree as $term) {
-
           switch ($category_display) {
-
             case 'hide_qa':
             case 'categories_inline':
               if (faq_taxonomy_term_count_nodes($term->tid)) {
                 _display_faq_by_category($faq_display, $category_display, $term, 1, $output, $output_answers);
               }
               break;
-
-
-          } // End of switch (category_display).
-        } // End of foreach term.
-      } // End of if $category_display != new_page.
-    } // End of foreach vocab.
+          }
+        }
+      }
+    }
 
     if ($category_display == "new_page") {
       $output = theme('item_list', array('items' => $items, 'title' => NULL, 'type' => $list_style));
@@ -683,7 +671,6 @@ function _display_faq_by_category($faq_display, $category_display, $term, $displ
     $query->condition("{$td_alias}.language", i18n_select_langcodes());
   }
 
-
   // We only want the first column, which is nid, so that we can load all
   // related nodes.
   $nids = $query->execute()->fetchCol();
@@ -710,33 +697,26 @@ function _display_faq_by_category($faq_display, $category_display, $term, $displ
   $faq_path = drupal_get_path('module', 'faq') . '/includes';
 
   switch ($faq_display) {
-
     case 'questions_top':
       include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.questions_top.inc';
       // @todo fix workaround: have to share result.
       $output .= theme('faq_category_questions_top', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       $output_answers .= theme('faq_category_questions_top_answers', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       break;
-
-
     case 'hide_answer':
       include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.hide_answer.inc';
       $output .= theme('faq_category_hide_answer', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       break;
-
-
     case 'questions_inline':
       include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.questions_inline.inc';
       $output .= theme('faq_category_questions_inline', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       break;
-
-
     case 'new_page':
       include_once DRUPAL_ROOT . '/' . $faq_path . '/faq.new_page.inc';
       $output .= theme('faq_category_new_page', array('data' => $data, 'display_header' => $display_header, 'category_display' => $category_display, 'term' => $term, 'class' => $faq_class, 'parent_term' => $term));
       break;
-
-  } // End of switch (faq_display).
+  // End of switch (faq_display).
+  }
 
 
   // Handle indenting of categories.
@@ -858,7 +838,8 @@ function faq_block_view($delta) {
         }
       }
       break;
-  } // End switch($delta).
+  // End switch($delta).
+  }
 
   return $block;
 }
@@ -1163,7 +1144,8 @@ function faq_view_answer(&$data, $node, $back_to_top, $teaser, $links) {
 
   $node_links = ($links ? $build['links']['node']['#links'] : (!empty($back_to_top) ? array($build['links']['node']['#links']['faq_back_to_top']) : NULL));
   unset($build['links']);
-  unset($build['#theme']); // We don't want node title displayed.
+  // We don't want node title displayed.
+  unset($build['#theme']);
 
   $content = drupal_render($build);
 
@@ -1326,8 +1308,9 @@ function faq_pathauto($op) {
       $settings['patterndefault'] = t('faq-page/[term:tid]');
       $settings['batch_update_callback'] = 'faq_pathauto_bulkupdate';
       $settings['token_type'] = 'term';
-
+      // @codingStandardsIgnoreStart
       return (object) $settings;
+      // @codingStandardsIgnoreEnd
     default:
       break;
   }

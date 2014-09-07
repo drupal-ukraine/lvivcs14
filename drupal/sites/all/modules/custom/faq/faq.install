@@ -72,8 +72,6 @@ function faq_schema() {
     ),
     'primary key' => array('nid', 'vid'),
   );
-
-
   return $schema;
 }
 

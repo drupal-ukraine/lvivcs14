@@ -70,8 +70,6 @@ else {
 ?>
 <a id="faq-top"></a>
 <div class="faq-category-menu">
-
-  <!-- category header with title, link, image, description, and count of questions inside -->
   <div class="faq-qa-header">
   <?php if ($display_header): ?>
     <<?php print $hdr; ?> class="faq-header">
@@ -90,11 +88,9 @@ else {
   <?php if (!empty($term_image)): ?>
     <div class="clear-block"></div>
   <?php endif; ?>
-  </div> <!-- Close div: faq-qa-header -->
-
+  </div>
 
   <?php if (!empty($subcat_list)): ?>
-    <!-- list subcategories, with title, link, description, count -->
     <div class="item-list">
     <<?php print $subcat_list_style; ?> class="faq-category-list">
     <?php foreach ($subcat_list as $i => $subcat): ?>
@@ -110,19 +106,17 @@ else {
       </li>
     <?php endforeach; ?>
     </<?php print $subcat_list_style; ?>>
-  </div> <!-- Close div: item-list -->
+  </div>
   <?php endif; ?>
 
   <div class="<?php print $container_class; ?>">
 
-  <?php // include subcategories ?>
   <?php if (count($subcat_body_list)): ?>
     <?php foreach ($subcat_body_list as $i => $subcat_html): ?>
       <div class="faq-category-indent"><?php print $subcat_html; ?></div>
     <?php endforeach; ?>
   <?php endif; ?>
 
-  <?php // list question links ?>
   <?php if (!empty($question_list)): ?>
     <div class="item-list">
     <<?php print $question_list_style; ?> class="faq-ul-questions-top">
@@ -132,16 +126,15 @@ else {
       </li>
     <?php endforeach; ?>
     </<?php print $question_list_style; ?>>
-  </div> <!-- Close div: item-list -->
+  </div>
   <?php endif; ?>
 
   <?php if (!$group_questions_top && $category_display != 'hide_qa'): ?>
-    </div> <!-- Close div: faq-qa / faq-qa-hide -->
-    </div> <!-- Close div: faq-category-menu -->
+    </div>
+    </div>
   <?php endif; ?>
 
   <?php if ($answer_category_name): ?>
-    <!-- Display header before answers in some layouts. -->
     <<?php print $hdr; ?> class="faq-header">
     <?php print $term_image; ?>
     <?php print $category_name; ?>
@@ -149,21 +142,20 @@ else {
     <div class="clear-block"></div>
   <?php endif; ?>
 
-  <?php // List questions (in title link) and answers (in body). ?>
   <div class="faq-category-group">
   <div>
 
   <?php if (count($nodes)): ?>
     <?php foreach ($nodes as $i => $node): ?>
 
-      <div class="faq-question"><?php // Strong question label here? ?>
+      <div class="faq-question">
         <?php if (!empty($question_label)) : ?>
           <strong class="faq-question-label">
             <?php print $question_label; ?>
           </strong>
         <?php endif; ?>
       <?php print $node['question']; ?>
-      </div> <!-- Close div: faq-question -->
+      </div>
 
       <div class="faq-answer">
         <?php if (!empty($answer_label)) : ?>
@@ -175,15 +167,15 @@ else {
         <?php if (isset($node['links'])): ?>
           <?php print $node['links']; ?>
         <?php endif; ?>
-      </div> <!-- Close div: faq-answer -->
+      </div>
     <?php endforeach; ?>
   <?php endif; ?>
 
-  </div> <!-- Close div -->
-</div> <!-- Close div: faq-category-group -->
+  </div>
+</div>
 
 <?php if ($group_questions_top || $category_display == 'hide_qa'): ?>
-</div> <!-- Close div: faq-qa / faq-qa-hide -->
-</div> <!-- Close div: faq-category-menu -->
+</div>
+</div>
 <?php
 endif;
