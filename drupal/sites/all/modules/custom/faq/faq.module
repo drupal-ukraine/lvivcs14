@@ -542,7 +542,7 @@ function new_faq_page($tid = 0, $faq_display = '', $category_display = '') {
         $output = theme('faq_new_page', array('data' => $data));
         break;
 
-    // End of switch.
+      // End of switch.
     }
   }
 
