@@ -28,7 +28,7 @@ define('GMAP_API_VERSION', '3');
  * @deprecated use GmapDefaults::getInstance()->getDefaults()
  */
 function gmap_defaults() {
-  include_once (drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php';
   return GmapDefaults::getInstance()->getDefaults();
 }
 
@@ -151,6 +151,7 @@ function gmap_gmap($op, &$map) {
           'default' => FALSE,
           'help' => t('Enabling this will work around some issues that can occur when maps appear inside collapsible fieldsets.'),
         ),
+
         // Note to myself, who keeps forgetting what a scale control actually IS.:
         // |------------  1mi ------------|
         'scale' => array(
@@ -212,7 +213,7 @@ function gmap_gmap($op, &$map) {
  * @deprecated use GmapDefaults::getInstance()->getBaseJs()
  */
 function _gmap_base_js() {
-  include_once (drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php';
   return GmapDefaults::getInstance()->getBaseJs();
 }
 

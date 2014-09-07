@@ -1,8 +1,8 @@
 <?php
 /**
+ * @file
  * $Id: gmap_settings_ui.inc,v 1.12.2.5 2010/06/08 20:49:13 bdragon Exp $
  *
- * @file
  * GMap settings form.
  *
  * @todo move to GmapForms class
@@ -308,8 +308,7 @@ function gmap_admin_settings($form, &$form_state) {
     $opts['clustermarker'] = array();
   }
   // None.
-  $opts['gmap'] = array_merge(array(
-  ), $opts['gmap']);
+  $opts['gmap'] = array_merge(array(), $opts['gmap']);
 
   $opts['gmarkermanager'] = array_merge(array(
     'borderPadding' => 256,
