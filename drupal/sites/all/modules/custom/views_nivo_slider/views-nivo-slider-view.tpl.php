@@ -1,6 +1,6 @@
 <?php
 /**
- * @file views-view.tpl.php
+ * @file
  * Main view template
  *
  * Variables available:
