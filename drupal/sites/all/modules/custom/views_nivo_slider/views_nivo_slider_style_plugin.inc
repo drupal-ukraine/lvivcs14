@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- *  Provide the views nivo slider plugin object with default options and form.
+ * Provide the views nivo slider plugin object with default options and form.
  */
 
 /**
@@ -10,7 +10,7 @@
 
 class views_nivo_slider_style_plugin extends views_plugin_style {
 
-  function option_definition() {
+  public function option_definition() {
     $options = parent::option_definition();
     unset($options['grouping']);
 
@@ -33,7 +33,7 @@ class views_nivo_slider_style_plugin extends views_plugin_style {
     return $options;
   }
 
-  function options_form(&$form, &$form_state) {
+  public function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
     unset($form['grouping']);
 
@@ -192,11 +192,11 @@ class views_nivo_slider_style_plugin extends views_plugin_style {
     );
   }
 
-  function get_style_options() {
+  public function get_style_options() {
     return views_nivo_slider_list_themes();
   }
 
-  function get_effect_options() {
+  public function get_effect_options() {
     return array(
       'random' => t('Random'),
       'boxRandom' => 'boxRandom',
