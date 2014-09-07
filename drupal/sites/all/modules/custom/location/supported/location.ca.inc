@@ -264,7 +264,6 @@ function _location_driving_directions_link_ca_yahoo($location_a, $location_b) {
   // a link to the *form* for Yahoo! driving directions rather than directly to the driving
   // directions themselves.
 
-
   foreach ($location_a as $field => $value) {
     $location_a[$field] = trim($value);
   }

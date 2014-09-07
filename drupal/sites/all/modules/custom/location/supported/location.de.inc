@@ -66,9 +66,6 @@ function _location_map_link_de_suchen($location = array()) {
   if ($location['city'] != '') {
     $query_parts[] = $location['city'];
   }
-//  if ($location['number'] != '') {
-//    $query_parts[] = $location['number'];
-//  }
   $get_query .= urlencode(implode(', ', $query_parts));
 
   return ('http://www.suchen.de/lokalmap' . $get_query);

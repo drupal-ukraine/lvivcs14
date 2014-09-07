@@ -124,7 +124,8 @@ function _location_latlon_exact_au_geocoder($location = array()) {
     ) {
       $location_string = $location['street'] . ', ' . $location['city'] . ', ' . $location['province'];
     }
-    else { // else geocoder.us won't do bidness with you!
+    else {
+      // Else geocoder.us won't do bidness with you.
       return NULL;
     }
   }
@@ -310,7 +311,6 @@ function location_geocode_au_yahoo($location = array()) {
         return NULL;
       }
 
-
       if (preg_match('/<Longitude>(.*)<\/Longitude>/', $http_reply->data, $lon_match)) {
         $latlon['lon'] = $lon_match[1];
 
@@ -364,7 +364,6 @@ function _location_driving_directions_link_au_yahoo($location_a, $location_b) {
   // link to yahoo directions.  If all of these fields don't have values, then we generate
   // a link to the *form* for Yahoo! driving directions rather than directly to the driving
   // directions themselves.
-
 
   foreach ($location_a as $field => $value) {
     $location_a[$field] = trim($value);
