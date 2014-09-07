@@ -1,8 +1,7 @@
 <?php
-
 /**
  * @file
- *  GMap install/uninstall routines.
+ * GMap install/uninstall routines.
  */
 
 /**
@@ -99,15 +98,3 @@ function gmap_update_5003() {
   drupal_set_message(t('Border Padding on marker managers is now defaulting to the recommended 256 pixels, rather than 0 pixels. You may wish to change your marker manager settings on the <a href="@url">GMap settings page</a> to match.', array('@url' => url('admin/settings/gmap'))));
   return $ret;
 }
-
-/**
- * Drupal 7 clean up.
- */
-/*
-function gmap_update_7000() {
-  $ret = array();
-  variable_del('gmap_private_markerfile');
-  
-  return $ret;
-}
-*/

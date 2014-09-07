@@ -14,9 +14,9 @@ namespace tests\inc;
  * [3] http://mathworld.wolfram.com/
  */
 
-DEFINE('GMAP_DP_EPSILON', 0.00001);
-DEFINE('GMAP_ZOOM_LEVELS', 18);
-DEFINE('GMAP_ZOOM_FACTOR', 2);
+define('GMAP_DP_EPSILON', 0.00001);
+define('GMAP_ZOOM_LEVELS', 18);
+define('GMAP_ZOOM_FACTOR', 2);
 
 
 /**
@@ -81,13 +81,16 @@ function legacy_gmap_polyutil_point_line_dist($q, $p1, $p2) {
   //   http://www.codeguru.com/forum/printthread.php?t=194400
   $u = (($p2[1] - $p1[1]) * ($q[1] - $p1[1]) + ($p2[0] - $p1[0]) * ($q[0] - $p1[0])) / (pow($p2[1] - $p1[1], 2) + pow($p2[0] - $p1[0], 2));
 
-  if ($u <= 0) { // point is not alongside segment, it is further off in $p1's direction
+  if ($u <= 0) {
+    // point is not alongside segment, it is further off in $p1's direction
     return legacy_gmap_polyutil_dist($q, $p1);
   }
-  elseif ($u >= 1) { // point is not alongside segment, it is further off in $p2's direction
+  elseif ($u >= 1) {
+    // point is not alongside segment, it is further off in $p2's direction
     return legacy_gmap_polyutil_dist($q, $p2);
   }
-  else { // point is alongside segment
+  else {
+    // point is alongside segment
     // calculate distance between q and the nearest point on the line segment
     // use $u to calculate the nearest point on the line segment:
     //   p1 + u*(p2 - p1) => [p1x + u*(p2x - p1x), p1y + u*(p2y - p1y)]

@@ -31,7 +31,7 @@ use Drupal\gmap\GmapPolylineToolbox;
  * @deprecated use GmapPolylineToolbox::getInstance()->setLatLonNumber($x)->getEncodedLatLon();
  */
 function gmap_polyutil_encode_latlon($x) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php';
   return GmapPolylineToolbox::getInstance()->setLatLonNumber($x)->getEncodedLatLon();
 }
 
@@ -42,7 +42,7 @@ function gmap_polyutil_encode_latlon($x) {
  * @deprecated use GmapPolylineToolbox::getInstance()->setLatLonNumber($x)->getEncodedLevels();
  */
 function gmap_polyutil_encode_levels($x) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php';
   return GmapPolylineToolbox::getInstance()->setLatLonNumber($x)->getEncodedLevels();
 }
 
@@ -53,7 +53,7 @@ function gmap_polyutil_encode_levels($x) {
  * @deprecated use GmapPolylineToolbox::getInstance()->setLatLonNumber($x)->getEncode();
  */
 function _gmap_polyutil_encode($x) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php';
   return GmapPolylineToolbox::getInstance()->setLatLonNumber($x)->getEncode();
 }
 
@@ -64,7 +64,7 @@ function _gmap_polyutil_encode($x) {
  * @deprecated use GmapPolylineToolbox::getInstance()->setLinePoints($p1, $p2)->getDist();
  */
 function gmap_polyutil_dist($p1, $p2) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php';
   return GmapPolylineToolbox::getInstance()->setLinePoints($p1, $p2)->getDist();
 }
 
@@ -82,7 +82,7 @@ function gmap_polyutil_dist($p1, $p2) {
  * @deprecated use GmapPolylineToolbox::getInstance()->setMeasurePoint($q)->setLinePoints($p1, $p2)->getPointLineDist();
  */
 function gmap_polyutil_point_line_dist($q, $p1, $p2) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php';
   return GmapPolylineToolbox::getInstance()->setMeasurePoint($q)->setLinePoints($p1, $p2)->getPointLineDist();
 }
 
@@ -101,7 +101,7 @@ function gmap_polyutil_point_line_dist($q, $p1, $p2) {
  * @deprecated use GmapPolylineToolbox::getInstance()->setPoints($points)->getDPEncode();
  */
 function gmap_polyutil_dp_encode($points) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php';
   return GmapPolylineToolbox::getInstance()->setPoints($points)->getDPEncode();
 }
 
@@ -116,7 +116,7 @@ function gmap_polyutil_dp_encode($points) {
  * @deprecated use GmapPolylineToolbox::getInstance()->setPoints($points)->getPolyline();
  */
 function gmap_polyutil_polyline($points) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php';
   return GmapPolylineToolbox::getInstance()->setPoints($points)->getPolyline();
 }
 
@@ -126,7 +126,7 @@ function gmap_polyutil_polyline($points) {
  * @deprecated use GmapPolylineToolbox::getInstance()->getZoomLevels();
  */
 function _gmap_polyutil_zoom_levels() {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php';
   return GmapPolylineToolbox::getInstance()->getZoomLevels();
 }
 
@@ -137,6 +137,6 @@ function _gmap_polyutil_zoom_levels() {
  * @deprecated use GmapPolylineToolbox::getInstance()->setWeight($weight)->getZoomLevel();
  */
 function _gmap_polyutil_get_zoom_level($weight) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapPolylineToolbox.php';
   return GmapPolylineToolbox::getInstance()->setWeight($weight)->getZoomLevel();
 }

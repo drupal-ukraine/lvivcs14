@@ -180,8 +180,8 @@ function gmap_gmap($op, &$map) {
           'previewable' => TRUE,
         ),
       );
-      // @codingStandardsIgnoreEnd
       break;
+      // @codingStandardsIgnoreEnd
 
     case 'baselayers':
       $map['Google']['Map'] = array(

@@ -15,7 +15,7 @@ use Drupal\gmap\GmapMacroToolbox;
  * @deprecated use GmapMacroToolbox::getInstance()->setStyle($style)->getParsedStyles()
  */
 function _gmap_parse_style($style) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
   return GmapMacroToolbox::getInstance()->setStyle($style)->getParsedStyles();
 }
 
@@ -26,7 +26,7 @@ function _gmap_parse_style($style) {
  * @deprecated use GmapMacroToolbox::getInstance()->setStyle($style)->getParsedStyles()
  */
 function _gmap_str2coord($str) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
   return GmapMacroToolbox::getInstance()->setCoordString($str)->getCoord();
 }
 
@@ -38,6 +38,6 @@ function _gmap_str2coord($str) {
  * @deprecated use GmapMacroToolbox::getInstance()->setMacroString($instring, $ver = 2)->getParsedMacro()
  */
 function _gmap_parse_macro($instring, $ver = 2) {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php');
+  include_once drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapMacroToolbox.php';
   return GmapMacroToolbox::getInstance()->setMacroString($instring, $ver = 2)->getParsedMacro();
 }

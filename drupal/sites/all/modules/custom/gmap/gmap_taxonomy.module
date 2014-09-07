@@ -44,26 +44,6 @@ function gmap_taxonomy_form_alter(&$form, &$form_state, $form_id) {
       );
     }
   }
-
-  // Move the Save and Delete buttons down below our additions.
-  /*
-  if ($form_id == 'taxonomy_form_vocabulary' || $form_id == 'taxonomy_form_term') {
-    if (isset($form['submit']['#weight'])) {
-      $form['submit']['#weight']++;
-    }
-    else {
-      $form['submit']['#weight'] = 1;
-    }
-    if (isset($form['delete'])) {
-      if (isset($form['delete']['#weight'])) {
-        $form['delete']['#weight']+=2;
-      }
-      else {
-        $form['delete']['#weight'] = 2;
-      }
-    }
-  }
-  */
 }
 
 /**
@@ -341,8 +321,6 @@ function gmap_taxonomy_reassign_marker($tid, $deletion = FALSE) {
         ->execute();
     }
   }
-
-
   //Clear cache to keep data updated
   cache_clear_all('gmap_taxonomy_markers_data', 'cache');
 }

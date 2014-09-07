@@ -14,7 +14,7 @@ class gmap_plugin_style_gmap extends views_plugin_style {
   /**
    * Set default options
    */
-  function option_definition() {
+  public function option_definition() {
     $options = parent::option_definition();
 
     $options['macro'] = array(
@@ -61,7 +61,7 @@ class gmap_plugin_style_gmap extends views_plugin_style {
     return $options;
   }
 
-  function query() {
+  public function query() {
     parent::query();
 
     if ($this->options['datasource'] == 'location') {
@@ -88,7 +88,7 @@ class gmap_plugin_style_gmap extends views_plugin_style {
   /**
    * Render the display in this style.
    */
-  function render() {
+  public function render() {
 
     if (isset($this->view->live_preview) && $this->view->live_preview) {
       return t('GMap views are not compatible with live preview.');
@@ -107,18 +107,24 @@ class gmap_plugin_style_gmap extends views_plugin_style {
     }
     else {
       if ($this->options['datasource'] == 'geofield') {
-        $lat_field = 'field_' . $this->options['geofield']; // "[0]['raw']['lat']";
-        $lon_field = 'field_' . $this->options['geofield']; // "[0]['raw']['lon']";
+        // "[0]['raw']['lat']";
+        $lat_field = 'field_' . $this->options['geofield'];
+        // "[0]['raw']['lon']";
+        $lon_field = 'field_' . $this->options['geofield'];
       }
       else {
         if ($this->options['datasource'] == 'geolocation') {
-          $lat_field = 'field_' . $this->options['geolocation']; // "[0]['raw']['lat']";
-          $lon_field = 'field_' . $this->options['geolocation']; // "[0]['raw']['lng']";
+          // "[0]['raw']['lat']";
+          $lat_field = 'field_' . $this->options['geolocation'];
+          // "[0]['raw']['lng']";
+          $lon_field = 'field_' . $this->options['geolocation'];
         }
         // Determine fieldname for latitude and longitude fields.
         else {
           if ($this->options['datasource'] == 'fields') {
-            $lat_field = 'field_' . $this->options['latfield']; // "[0]['raw']['value']";
+            // "[0]['raw']['value']";
+            $lat_field = 'field_' . $this->options['latfield'];
+            // "[0]['raw']['value']";
             $lon_field = 'field_' . $this->options['lonfield']; // "[0]['raw']['value']";
           }
         }
@@ -305,7 +311,9 @@ class gmap_plugin_style_gmap extends views_plugin_style {
           $offsets[$markername]++;
         }
       }
-      if (!empty($markers)) { // Don't draw empty maps.
+
+      // Don't draw empty maps.
+      if (!empty($markers)) {
         $map = gmap_parse_macro($this->options['macro']);
         if ($this->options['enablermt']) {
           $map['rmtcallback'] = $this->options['rmtcallback'];
@@ -334,7 +342,7 @@ class gmap_plugin_style_gmap extends views_plugin_style {
   /**
    * Render the given style.
    */
-  function options_form(&$form, &$form_state) {
+  public function options_form(&$form, &$form_state) {
     parent::options_form($form, $form_state);
 
     $field_options = array();
@@ -587,7 +595,7 @@ class gmap_plugin_style_gmap extends views_plugin_style {
   /**
    * Validate the options form.
    */
-  function options_validate(&$form, &$form_state) {
+  public function options_validate(&$form, &$form_state) {
     parent::options_validate($form, $form_state);
     // Check if highlight color is a valid hex color
     if (!preg_match('/^#[a-f0-9]{6}$/i', $form_state['values']['style_options']['highlight_nodearg_color'])) {
