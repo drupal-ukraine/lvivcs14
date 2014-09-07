@@ -28,7 +28,7 @@ define('GMAP_API_VERSION', '3');
  * @deprecated use GmapDefaults::getInstance()->getDefaults()
  */
 function gmap_defaults() {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php');
+  include_once (drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php');
   return GmapDefaults::getInstance()->getDefaults();
 }
 
@@ -42,11 +42,7 @@ function gmap_theme() {
     'views_view_gmap' => array('render element' => 'element'),
     'gmap_views_marker_label' => array('render element' => 'element'),
     'gmap_marker_popup' => array('variables' => array('label' => '')),
-//    'gmap_overlay_edit' => array('render element' => 'element'),
-//    'gmap_macrotext' => array('render element' => 'element'),
     'gmap_dimension' => array('render element' => 'element'),
-//    'gmap_address' => array('render element' => 'element'),
-//    'gmap_align' => array('render element' => 'element'),
     'gmap' => array('render element' => 'element'),
   );
 }
@@ -96,12 +92,16 @@ function gmap_gmap($op, &$map) {
           'multiple' => TRUE,
         ),
       );
+
     case 'pre_theme_map':
       break;
+
     case 'macro_multiple':
       return array('points', 'markers', 'feed', 'circle', 'rpolygon', 'polygon', 'line', 'style');
+
     case 'libraries':
       return array('geometry');
+
     case 'behaviors':
       return array(
         'locpick' => array(
@@ -146,12 +146,6 @@ function gmap_gmap($op, &$map) {
           'help' => t('Enable the "overview map" in the bottom right corner.'),
           'previewable' => TRUE,
         ),
-        /*        'notype' => array(
-                  'title' => t('Disable map type control'),
-                  'default' => FALSE,
-                  'help' => t('Removes the map type control from the upper right corner. Recommended for very narrow maps.'),
-                  'previewable' => TRUE,
-                ), */
         'collapsehack' => array(
           'title' => t('Work around bugs when maps appear in collapsible fieldsets'),
           'default' => FALSE,
@@ -177,12 +171,6 @@ function gmap_gmap($op, &$map) {
           'help' => t('Used for advanced javascript work, this will enable the <em>clickshape</em> event.'),
           'internal' => TRUE,
         ),
-        //'googlebar' => array(
-        //  'title' => t('Enable Google Bar'),
-        //  'default' => FALSE,
-        //  'help' => t('Enable the "Google Bar" at bottom of the map.'),
-        //  'previewable' => TRUE,
-        //),
         'highlight' => array(
           'title' => t('Highlight marker on rollover'),
           'default' => FALSE,
@@ -224,7 +212,7 @@ function gmap_gmap($op, &$map) {
  * @deprecated use GmapDefaults::getInstance()->getBaseJs()
  */
 function _gmap_base_js() {
-  include_once(drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php');
+  include_once (drupal_get_path('module', 'gmap') . '/lib/Drupal/gmap/GmapDefaults.php');
   return GmapDefaults::getInstance()->getBaseJs();
 }
 
@@ -340,7 +328,8 @@ function _gmap_prepare($intext) {
     );
     $out[1][$i] = drupal_render($map);
     $i++;
-  } // endwhile process macro
+  }
+  // endwhile process macro
   return $out;
 }
 
@@ -387,7 +376,8 @@ function gmap_filter_info() {
     'description' => t('GMap macros will be displayed as interactive maps.'),
     'process callback' => '_gmap_filter_process',
     'tips callback' => '_gmap_filter_tips',
-    'cache' => FALSE, // @todo FIX ME ALREADY!!!
+    // @todo FIX ME ALREADY!!!
+    'cache' => FALSE,
   );
   return $filters;
 }
@@ -397,8 +387,10 @@ function gmap_filter_info() {
  * Filter process callback for gmap_macro.
  */
 function _gmap_filter_process($text, $filter, $format) {
-  $gmaps = _gmap_prepare($text); //returns an array of $tables[0] = table macro $table[1]= table html
-  if ($gmaps) { // there are table macros in this node
+  //returns an array of $tables[0] = table macro $table[1]= table html
+  $gmaps = _gmap_prepare($text);
+  // there are table macros in this node
+  if ($gmaps) {
     return str_replace($gmaps[0], $gmaps[1], $text);
   }
   else {
@@ -411,7 +403,8 @@ function _gmap_filter_process($text, $filter, $format) {
  * Implement tips callback for gmap_macro.
  */
 function _gmap_filter_tips($filter, $format, $long = FALSE) {
-  if (user_access('create gmap macro')) { // only display macro if user can create one
+  // only display macro if user can create one
+  if (user_access('create gmap macro')) {
     return t('Insert Google Map macro.') . '<a href="' . url('map/macro') . '" target="_blank" >' . t('Create a macro') . '</a>';
   }
   else {
@@ -484,7 +477,8 @@ function gmap_element_info() {
   $path = drupal_get_path('module', 'gmap');
   return array(
     'gmap' => array(
-      '#input' => FALSE, // This isn't a *form* input!!
+      // This isn't a *form* input!!
+      '#input' => FALSE,
       '#gmap_settings' => array_merge(gmap_defaults(), array(
         'points' => array(),
         'pointsOverlays' => array(),
@@ -502,7 +496,6 @@ function gmap_element_info() {
     'gmap_macrotext' => array(
       '#input' => TRUE,
       '#gmap_newtype' => 'textarea',
-//      '#theme' => 'gmap_macrotext',
       '#process' => array('process_gmap_control'),
       '#attached' => array(
         'js' => array(
@@ -523,7 +516,6 @@ function gmap_element_info() {
           "$path/js/polygonEdit/src/polygonEdit_packed.js" => array('weight' => 3),
         ),
       ),
-//      '#theme' => 'select',
     ),
     'gmap_style' => array(
       '#input' => TRUE,
@@ -769,8 +761,6 @@ function process_gmap_overlay_edit($element) {
     '#map' => $element['#map'],
     '#options' => array(
       'Remove' => t('Remove'),
-//      'updatestyle' => t('Update Styles'),
-//      'removestyle' => t('Remove Styles'),
       'Edit Info' => t('Edit Info'),
     ),
   );
@@ -781,7 +771,6 @@ function process_gmap_overlay_edit($element) {
     '#map' => $element['#map'],
     '#options' => gmap_get_marker_titles(),
     '#title' => t('Marker'),
-//    '#theme' => 'gmap_overlay_edit',
   );
   gmap_widget_setup($element['marker'], 'overlayedit');
 
@@ -789,7 +778,7 @@ function process_gmap_overlay_edit($element) {
     '#type' => 'gmap_style',
     '#title' => t('Line style'),
     '#gmap_style_type' => 'line',
-    '#default_value' => array('0000ff', 5, 45, '', ''), // @@@
+    '#default_value' => array('0000ff', 5, 45, '', ''),
   );
   gmap_widget_setup($element['linestyle'], 'overlayedit_linestyle', $element['#map']);
   $element['linestyle']['linestyle_apply'] = array(
@@ -804,7 +793,7 @@ function process_gmap_overlay_edit($element) {
     '#type' => 'gmap_style',
     '#title' => t('Polygon style'),
     '#gmap_style_type' => 'poly',
-    '#default_value' => array('000000', 3, 25, 'ff0000', 45), // @@@
+    '#default_value' => array('000000', 3, 25, 'ff0000', 45),
   );
   gmap_widget_setup($element['polystyle'], 'overlayedit_polystyle', $element['#map']);
   $element['polystyle']['polystyle_apply'] = array(
@@ -940,9 +929,11 @@ function theme_gmap($variables) {
     case 'left':
       $element['#attributes']['class'][] = 'gmap-left';
       break;
+
     case 'right':
       $element['#attributes']['class'][] = 'gmap-right';
       break;
+
     case 'center':
     case 'centre':
       $element['#attributes']['class'][] = 'gmap-center';
@@ -1188,8 +1179,10 @@ function gmap_geocode($address, $tld = 'com') {
 function gmap_simple_map($latitude, $longitude, $markername = '', $info = '', $zoom = 'auto', $width = 'default', $height = 'default', $autoshow = FALSE, $map = array()) {
   $settings = array(
     'id' => gmap_get_auto_mapid(),
-    'latitude' => $latitude, // Center the map
-    'longitude' => $longitude, // on the marker.
+     // Center the map
+    'latitude' => $latitude,
+     // on the marker.
+    'longitude' => $longitude,
   );
   if ($zoom != 'default') {
     $settings['zoom'] = $zoom;
@@ -1379,7 +1372,6 @@ function theme_gmap_views_ui_gmapextended($variables) {
   }
 
   // Add the special 'None' row.
-//  $rows[] = array(t('None'), '', '', '', array('align' => 'center', 'data' => drupal_render($form['default'][-1])));
 
   $output .= theme('table', array('header' => $header, 'rows' => $rows));
   $output .= drupal_render_children($form);

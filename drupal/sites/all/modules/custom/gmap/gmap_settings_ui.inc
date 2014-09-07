@@ -1,7 +1,7 @@
 <?php
-// $Id: gmap_settings_ui.inc,v 1.12.2.5 2010/06/08 20:49:13 bdragon Exp $
-
 /**
+ * $Id: gmap_settings_ui.inc,v 1.12.2.5 2010/06/08 20:49:13 bdragon Exp $
+ *
  * @file
  * GMap settings form.
  *
@@ -307,8 +307,8 @@ function gmap_admin_settings($form, &$form_state) {
   if (!isset($opts['clustermarker']) || !is_array($opts['clustermarker'])) {
     $opts['clustermarker'] = array();
   }
-
-  $opts['gmap'] = array_merge(array( // None.
+  // None.
+  $opts['gmap'] = array_merge(array(
   ), $opts['gmap']);
 
   $opts['gmarkermanager'] = array_merge(array(
