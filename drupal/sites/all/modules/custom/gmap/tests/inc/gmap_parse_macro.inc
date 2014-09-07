@@ -7,8 +7,8 @@
 
 namespace tests\inc;
 
-include_once(drupal_get_path('module', 'gmap') . '/tests/inc/gmap_defaults.inc');
-include_once(drupal_get_path('module', 'gmap') . '/tests/inc/gmap_polyutil.inc');
+include_once drupal_get_path('module', 'gmap') . '/tests/inc/gmap_defaults.inc';
+include_once drupal_get_path('module', 'gmap') . '/tests/inc/gmap_polyutil.inc';
 
 /**
  * Parse a macro style definition.
@@ -327,8 +327,9 @@ function legacy__gmap_parse_macro($instring, $ver = 2) {
   // Markers fixup
   foreach ($m['markers-temp'] as $t) {
     unset($markername);
-    // Named?
-    if (strpos($t, '::')) { // Single : gets handled below.
+
+    // Single : gets handled below.
+    if (strpos($t, '::')) {
       list($markername, $t) = explode('::', $t, 2);
     }
     // Break down into points

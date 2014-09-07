@@ -12,9 +12,9 @@
  * [3] http://mathworld.wolfram.com/
  */
 
-DEFINE('GMAP_DP_EPSILON', 0.00001);
-DEFINE('GMAP_ZOOM_LEVELS', 18);
-DEFINE('GMAP_ZOOM_FACTOR', 2);
+define('GMAP_DP_EPSILON', 0.00001);
+define('GMAP_ZOOM_LEVELS', 18);
+define('GMAP_ZOOM_FACTOR', 2);
 
 use Drupal\gmap\GmapPolylineToolbox;
 

@@ -74,18 +74,21 @@ function legacy__gmap_base_js() {
   // @see https://developers.google.com/maps/documentation/javascript/basics#Localization
   global $language;
   switch ($language->language) {
-    case 'zh-hans': // 'Chinese, Simplified'
+    case 'zh-hans':
       $langcode = 'zh-CN';
       break;
-    case 'zh-hant': // 'Chinese, Traditional'
+
+    case 'zh-hant':
       $langcode = 'zh-TW';
       break;
-    case 'he': // Hebrew
+
+    case 'he':
       $langcode = 'iw';
       break;
-    case 'nb': // 'Norwegian Bokm�l', 'Bokm�l'
-    case 'nn': // 'Norwegian Nynorsk', 'Nynorsk'
-      $langcode = 'no'; // 'Norwegian'
+
+    case 'nb':
+    case 'nn':
+      $langcode = 'no';
       break;
 
     default:
