@@ -116,6 +116,7 @@ function gmap_location_update_5100() {
   if ($var) {
     $var = trim($var);
     switch ($var) {
+    // @codingStandardsIgnoreStart
       // Record of all historical defaults
       case '[gmap |id=block0 |zoom=10 |width=100% |height=200px |control=Small |type=Map]':
       case '[gmap |id=block0|zoom=10 |width=100% |height=200px |control=Small |type=Map]':
@@ -124,7 +125,8 @@ function gmap_location_update_5100() {
       case '[gmap |id=block0 |zoom=10 |width=100% |height=200px |control=Small |type=Map |behavior=+notype]':
         // Fall back to new default.
         variable_del('gmap_location_block_macro');
-        break;        
+        break;
+                
       default:
         // User has customized macro.
         drupal_set_message(t('You have customized the @type macro. Be advised that the new default macro is %macro. Please check your macro on the <a href="@url">block configuration page</a>.', array(
@@ -132,6 +134,7 @@ function gmap_location_update_5100() {
           '%macro' => '[gmap |width=100% |height=200px |control=None |behavior=+autozoom +notype]',
           '@url' => url('admin/structure/block/manage/gmap_location/0/configure')
         )));
+     // @codingStandardsIgnoreEnd
     }
   }
 
@@ -140,14 +143,16 @@ function gmap_location_update_5100() {
   if ($var) {
     $var = trim($var);
     switch ($var) {
-      // Record of all historical defaults
+    // @codingStandardsIgnoreStart
+      // Record of all historical defaults      
       case '[gmap |zoom=10 |width=100% |height=200px |control=Small |type=Map |behavior=+notype]':
       case '[gmap |id=block0|zoom=10 |width=100% |height=200px |control=Small |type=Map]':
       case '[gmap |id=block0 |zoom=10 |width=100% |height=200px |control=Small |type=Map]':
       case '[gmap |zoom=10 |width=100% |height=200px |control=Small |type=Map]':
         // Fall back to new default.
         variable_del('gmap_location_author_block_macro');
-        break;        
+        break;    
+            
       default:
         // User has customized macro.
         drupal_set_message(t('You have customized the @type macro. Be advised that the new default macro is %macro. Please check your macro on the <a href="@url">block configuration page</a>.', array(
@@ -155,6 +160,7 @@ function gmap_location_update_5100() {
           '%macro' => '[gmap |width=100% |height=200px |control=None |behavior=+autozoom +notype]',
           '@url' => url('admin/structure/block/manage/gmap_location/1/configure')
         )));
+    // @codingStandardsIgnoreEnd
     }
   }
 
