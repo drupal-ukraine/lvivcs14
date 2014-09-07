@@ -151,7 +151,7 @@ class GmapMacroToolbox {
    *
    * former _gmap_parse_macro($instring, $ver = 2)
    */
-  public function getParsedMacro(){
+  public function getParsedMacro() {
 
     // Get a list of keys that are "multiple."
     $m = array();

@@ -207,7 +207,7 @@ class GmapPolylineToolbox {
    *
    * @return $this
    */
-  function setPoints(array $points) {
+  public function setPoints(array $points) {
     $this->points = $points;
     return $this;
   }

@@ -125,6 +125,7 @@ function gmap_location_update_5100() {
         // Fall back to new default.
         variable_del('gmap_location_block_macro');
         break;
+        
       default:
         // User has customized macro.
         drupal_set_message(t('You have customized the @type macro. Be advised that the new default macro is %macro. Please check your macro on the <a href="@url">block configuration page</a>.', array(
@@ -148,6 +149,7 @@ function gmap_location_update_5100() {
         // Fall back to new default.
         variable_del('gmap_location_author_block_macro');
         break;
+        
       default:
         // User has customized macro.
         drupal_set_message(t('You have customized the @type macro. Be advised that the new default macro is %macro. Please check your macro on the <a href="@url">block configuration page</a>.', array(

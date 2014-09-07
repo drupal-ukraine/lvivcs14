@@ -1,4 +1,8 @@
 <?php
+/**
+ * @file
+ * Implements hook_field_widget_form_alter().
+ */
 
 /**
  * Implements hook_field_widget_form_alter().

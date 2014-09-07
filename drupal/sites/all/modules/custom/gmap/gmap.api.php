@@ -42,20 +42,26 @@
 function hook_gmap($op, &$map) {
   switch ($op) {
     case 'macro':
+      // @codingStandardsIgnoreStart
       return array(
         'feed' => array(
           'multiple' => TRUE,
         ),
       );
+      // @codingStandardsIgnoreEnd
+
     case 'pre_theme_map':
       $path = drupal_get_path('module', 'gmap') . '/js/';
       if (is_array($map['feed'])) {
         drupal_add_js($path . 'markerloader_georss.js');
       }
       break;
+
     case 'macro_multiple':
       return array('feed');
+
     case 'behaviors':
+      // @codingStandardsIgnoreStart
       return array(
         'nomousezoom' => array(
           'title' => t('Disable mousezoom'),
@@ -63,6 +69,7 @@ function hook_gmap($op, &$map) {
           'help' => t('Disable using the scroll wheel to zoom the map.'),
         ),
       );
+      // @codingStandardsIgnoreEnd
   }
 }
 

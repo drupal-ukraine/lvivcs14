@@ -174,28 +174,6 @@ function gmap_location_user_page() {
     }
     $map['markers'][] = $newmarker;
   }
-
-// @@@ Move to gmap_addons.
-  /*
-    if (user_access('view user location details') && function_exists('buddylist_get_buddies') && count($locationbyuser)>0) {
-      //create lines for buddies
-      if (!isset($thismap['shapes'])) {
-        $thismap['shapes']=array();
-      }
-      ksort($locationbyuser);
-      foreach ($locationbyuser as $key => $value) {
-        $buddies= buddylist_get_buddies($key);
-        foreach ($buddies as $bkey => $bvalue) {
-          if ($bkey > $key && isset($locationbyuser[$bkey])) {
-            $thismap['shape'][] = array(
-              'points' => array($locationbyuser[$key], $locationbyuser[$bkey]),
-              'type' => 'line'
-            );
-          }
-        }
-      }
-    }
-  */
   $element = array(
     '#type' => 'gmap',
     '#gmap_settings' => $map,
@@ -326,8 +304,8 @@ function gmap_location_node_page($nid = NULL) {
     // Organic groups. Group nodes are displayed as a map of the users who belong to the group.
     if (user_access('view user location details') && function_exists('og_is_group_type') && og_is_group_type($node->type)) {
       $rolemarkers = variable_get('gmap_role_markers', array());
-
-      $map['markers'] = array(); // Reset markers.
+      // Reset markers.
+      $map['markers'] = array();
 
       $result = db_query("
         SELECT
@@ -465,8 +443,6 @@ function gmap_location_admin_settings() {
     '#options' => array(t('Do nothing'), t('Open info window'), t('Open link')),
     '#default_value' => $temp['markermode'],
   );
-
-
   // Option to use a different marker for each role
   $form['user']['gmap_role_markers'] = array(
     '#type' => 'fieldset',
@@ -566,13 +542,15 @@ function gmap_location_admin_settings() {
  */
 function gmap_location_block_info() {
   return array(
+     // @@@ Check whether we can fix this by telling drupal what js to use.
     0 => array(
       'info' => t('Location map'),
-      'cache' => DRUPAL_NO_CACHE, // @@@ Check whether we can fix this by telling drupal what js to use.
+      'cache' => DRUPAL_NO_CACHE,
     ),
     1 => array(
       'info' => t('Author map'),
-      'cache' => DRUPAL_NO_CACHE, // @@@
+      'cache' => DRUPAL_NO_CACHE,
+
     ),
   );
 }
@@ -581,7 +559,8 @@ function gmap_location_block_info() {
  * Implement hook_block_configure().
  */
 function gmap_location_block_configure($delta = '') {
-  if ($delta == 0) { // Location map
+  if ($delta == 0) {
+    // Location map
     $form['gmap_location_block_macro'] = array(
       '#type' => 'textfield',
       '#title' => t('Map Macro'),
@@ -605,7 +584,8 @@ function gmap_location_block_configure($delta = '') {
       }
     }
   }
-  elseif ($delta == 1) { // Author map
+  elseif ($delta == 1) {
+    // Author map
     $form['gmap_location_author_block_macro'] = array(
       '#type' => 'textfield',
       '#title' => t('Map Macro'),
@@ -691,6 +671,7 @@ function gmap_location_block_view($delta = '') {
         return _gmap_location_block_view(arg(1));
       }
       break;
+
     case 1:
       if (arg(0) == 'node' && is_numeric(arg(1))) {
         return _gmap_location_author_block_view(arg(1));
@@ -747,7 +728,8 @@ function _gmap_location_block_view($nid) {
         '#type' => 'gmap',
         '#gmap_settings' => $map,
       );
-      $block['content'] = drupal_render($element); // @@@ Better theme
+      // @@@ Better theme
+      $block['content'] = drupal_render($element);
     }
   }
   return $block;
@@ -791,7 +773,8 @@ function _gmap_location_author_block_view($nid) {
         '#type' => 'gmap',
         '#gmap_settings' => $map,
       );
-      $block['content'] = drupal_render($element); // @@@ Better theme
+      // @@@ Better theme
+      $block['content'] = drupal_render($element);
     }
   }
   return $block;
@@ -838,8 +821,9 @@ function theme_gmap_location_infowindow_node(&$vars) {
   // a module called 'flexinode_#.module' in your site's module
   // directory and add theme_hook_gmapnodelabel($node, $location) to it.
   // Be sure to enable your 'flexinode_#.module'.
+  // make sure it all goes on one line.
   return '<div class="gmapnodelabel gmapnodelabel-' . drupal_clean_css_identifier($node->type) .
-  '">' . strtr(drupal_render(node_view($node, 'teaser')), "'\n\r", '"  ') . '</div>'; // make sure it all goes on one line.
+  '">' . strtr(drupal_render(node_view($node, 'teaser')), "'\n\r", '"  ') . '</div>';
 }
 
 /**
@@ -861,9 +845,11 @@ function gmap_location_node_type($op, $info) {
     case 'delete':
       unset($temp[$info->type]);
       break;
+
     case 'insert':
       $temp[$info->type] = 'drupal';
       break;
+
     case 'update':
       if (!empty($info->old_type) && $info->old_type != $info->type) {
         $temp[$info->type] = $temp[$info->old_type];

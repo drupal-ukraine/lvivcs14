@@ -125,7 +125,7 @@ class gmap_plugin_style_gmap extends views_plugin_style {
             // "[0]['raw']['value']";
             $lat_field = 'field_' . $this->options['latfield'];
             // "[0]['raw']['value']";
-            $lon_field = 'field_' . $this->options['lonfield']; // "[0]['raw']['value']";
+            $lon_field = 'field_' . $this->options['lonfield'];
           }
         }
       }
