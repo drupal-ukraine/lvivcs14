@@ -1,7 +1,8 @@
 <?php
 
 /**
- *  Provide the views nivo slider plugin definition.
+ * @file views_nivo_slider.views.inc
+ * Provide the views nivo slider plugin definition.
  */
 
 function views_nivo_slider_views_plugins() {
