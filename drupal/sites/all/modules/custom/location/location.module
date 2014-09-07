@@ -751,7 +751,6 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
         }
       }
 
-
       if (!empty($obj['locpick']) && is_array($obj['locpick'])) {
         // Can't specify just latitude or just longitude.
         if (isset($obj['locpick']['user_latitude']) && isset($obj['locpick']['user_longitude'])) {
@@ -781,6 +780,7 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
         $settings = array('default' => NULL, 'weight' => NULL, 'collect' => $a4, 'widget' => NULL);
       }
       switch ($a3) {
+        // @codingStandardsIgnoreStart
         case 'name':
           return array(
             '#type' => 'textfield',
@@ -792,7 +792,9 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
             '#attributes' => NULL,
             '#required' => ($settings['collect'] == 2),
           );
+        // @codingStandardsIgnoreEnd
 
+        // @codingStandardsIgnoreStart
         case 'street':
           return array(
             '#type' => 'textfield',
@@ -802,7 +804,10 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
             '#maxlength' => 255,
             '#required' => ($settings['collect'] == 2),
           );
+        // @codingStandardsIgnoreEnd
 
+
+        // @codingStandardsIgnoreStart
         // Additional is linked to street.
         case 'additional':
           return array(
@@ -813,7 +818,9 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
             '#maxlength' => 255,
             // Required is forced OFF because this is technically part of street.
           );
+        // @codingStandardsIgnoreEnd
 
+        // @codingStandardsIgnoreStart
         case 'city':
           return array(
             '#type' => 'textfield',
@@ -825,6 +832,7 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
             '#attributes' => NULL,
             '#required' => ($settings['collect'] == 2),
           );
+        // @codingStandardsIgnoreEnd
 
         case 'province':
           if (isset($a5['country']) && is_string($a5['country'])) {
@@ -837,6 +845,7 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
             $country = variable_get('site_default_country', 'us');
           }
           switch ($settings['widget']) {
+            // @codingStandardsIgnoreStart
             case 'select':
 
               // Options are defined once during hook_element implementation.
@@ -859,6 +868,8 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
                 '#prefix' => '<div id="location-dropdown-province-wrapper' . $wrapper_suffix . '">',
                 '#suffix' => '</div>',
               );
+            // @codingStandardsIgnoreEnd
+
             case 'autocomplete':
             default:
               drupal_add_js(drupal_get_path('module', 'location') . '/location_autocomplete.js');
@@ -940,6 +951,7 @@ function location_locationapi(&$obj, $op, $a3 = NULL, $a4 = NULL, $a5 = NULL) {
             return TRUE;
           }
           break;
+
         case 'latitude':
         case 'longitude':
           if (_location_floats_are_equal($obj[$a3], $a4)) {
@@ -1496,7 +1508,8 @@ function location_calc_difference($oldloc, $newloc, &$changes) {
 
     // It wasn't equal, but perhaps it was equivilent?
     $results = location_invoke_locationapi($newloc, 'isunchanged', $k, $oldloc[$k]);
-    $waschanged = TRUE; // First, assume changed.
+    // First, assume changed.
+    $waschanged = TRUE;
     foreach ($results as $r) {
       if ($r) {
         $waschanged = FALSE;
@@ -1968,7 +1981,6 @@ function location_settings($old = FALSE) {
   $form['display'] = array(
     '#type' => 'fieldset',
     '#title' => t('Display Settings'),
-//    '#description' => t('Here, you can change how locative data appears in nodes when viewed.'),
     '#tree' => TRUE,
     '#weight' => 6,
   );
