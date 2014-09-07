@@ -1,0 +1,32 @@
+name = faq_content
+description = FAQ module content feature
+core = 7.x
+package = FAQ
+project = faq_content
+dependencies[] = faq
+dependencies[] = faq_expert
+dependencies[] = features
+dependencies[] = field_permissions
+dependencies[] = node
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = body
+features[field_base][] = field_detailed_question
+features[field_instance][] = node-faqs-body
+features[field_instance][] = node-faqs-field_detailed_question
+features[node][] = faqs
+features[user_permission][] = administer faq
+features[user_permission][] = administer faq order
+features[user_permission][] = create faqs content
+features[user_permission][] = delete any faqs content
+features[user_permission][] = delete own faqs content
+features[user_permission][] = edit any faqs content
+features[user_permission][] = edit own faqs content
+features[user_permission][] = view faq page
+
+; Information added by Drupal.org packaging script on 2014-08-05
+version = "7.x-2.0-alpha1+0-dev"
+core = "7.x"
+project = "faq"
+datestamp = "1407241128"
+
