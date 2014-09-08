@@ -77,8 +77,8 @@ Drupal.gmap.addHandler('gmap', function (elem) {
                         }
                     };
                 };
-                // @codingStandardsIgnoreStart
                 // This sucks, but jQuery and IE don't get along here.
+                // @codingStandardsIgnoreStart
                 GDownloadUrl(feed.url, getfn(feed.markername));
                 // @codingStandardsIgnoreEnd
             }

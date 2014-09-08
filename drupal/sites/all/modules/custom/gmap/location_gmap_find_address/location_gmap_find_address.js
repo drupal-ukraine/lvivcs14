@@ -34,9 +34,9 @@
                     });
                 }
                 else {
-                    var geocoder = new GClientGeocoder();
-                    geocoder.reset(); // Clear the client-side cache
-                    geocoder.getLatLng(address_string, function (point) {
+                    var clientgeocoder = new GClientGeocoder();
+                    clientgeocoder.reset(); // Clear the client-side cache
+                    clientgeocoder.getLatLng(address_string, function (point) {
                         if (!point) {
                             alert(Drupal.t("Your address was not found."));
                         }

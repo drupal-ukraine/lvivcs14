@@ -54,7 +54,7 @@ if (typeof InfoBubble === 'function') {
     InfoBubble.prototype.setCloseZIndex = function (zIndex) {
         this.close_.style.zIndex = zIndex;
     };
-    InfoBubble.prototype.setCloseZIndex] =
+    InfoBubble.prototype.setCloseZIndex =
         InfoBubble.prototype.setCloseZIndex;
 
     /* Eighth new method: closeCursor allows you change what your cursor turns

@@ -286,6 +286,7 @@ Drupal.gmap.addHandler('gmap', function (elem) {
             case 'Satellite':
                 opts.mapTypeId = google.maps.MapTypeId.SATELLITE;
                 break;
+            /* falls through */
             case 'Map':
             default:
                 opts.mapTypeId = google.maps.MapTypeId.ROADMAP;
