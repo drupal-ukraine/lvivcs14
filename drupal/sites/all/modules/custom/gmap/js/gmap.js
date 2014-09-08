@@ -78,12 +78,12 @@
 
             if (settings || (Drupal.settings && Drupal.settings.gmap)) {
                 var mapid = obj.id.split('-');
-                if (Drupal.settings['gmap_remap_widgets']) {
-                    if (Drupal.settings['gmap_remap_widgets'][obj.id]) {
-                        jQuery.each(Drupal.settings['gmap_remap_widgets'][obj.id].classes, function () {
+                if (Drupal.settings.gmap_remap_widgets) {
+                    if (Drupal.settings.gmap_remap_widgets[obj.id]) {
+                        jQuery.each(Drupal.settings.gmap_remap_widgets[obj.id].classes, function () {
                             jQuery(obj).addClass(this);
                         });
-                        mapid = Drupal.settings['gmap_remap_widgets'][obj.id].id.split('-');
+                        mapid = Drupal.settings.gmap_remap_widgets[obj.id].id.split('-');
                     }
                 }
                 var instanceid = mapid.pop();
@@ -134,7 +134,7 @@
                 .addClass('gmap-' + mapid + '-gmap')
                 .addClass('gmap-processed')
                 .each(function () {
-                    Drupal.gmap.setup.call(this, settings)
+                    Drupal.gmap.setup.call(this, settings);
                 });
         });
     };
@@ -600,7 +600,7 @@ Drupal.gmap.addHandler('controltype', function (elem) {
     });
     // Send out outgoing height changes.
     jQuery(elem).change(function () {
-        obj.vars.controltype = elem.value
+        obj.vars.controltype = elem.value;
         obj.change("controltypechange", binding);
     });
 });
@@ -612,16 +612,16 @@ Drupal.gmap.addHandler('controltype', function (elem) {
 
 Drupal.behaviors.GMap = {
     attach: function (context, settings) {
-        if (Drupal.settings && Drupal.settings['gmap_remap_widgets']) {
-            jQuery.each(Drupal.settings['gmap_remap_widgets'], function (key, val) {
+        if (Drupal.settings && Drupal.settings.gmap_remap_widgets) {
+            jQuery.each(Drupal.settings.gmap_remap_widgets, function (key, val) {
                 jQuery('#' + key).addClass('gmap-control');
             });
         }
         jQuery('.gmap-gmap:not(.gmap-processed)', context).addClass('gmap-processed').each(function () {
-            Drupal.gmap.setup.call(this)
+            Drupal.gmap.setup.call(this);
         });
         jQuery('.gmap-control:not(.gmap-processed)', context).addClass('gmap-processed').each(function () {
-            Drupal.gmap.setup.call(this)
+            Drupal.gmap.setup.call(this);
         });
     },
     detach: function (context, settings) {
