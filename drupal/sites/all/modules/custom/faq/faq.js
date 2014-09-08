@@ -51,7 +51,7 @@
             scrollTop: $(this).offset().top
           }, 1);
         }
-        
+
         return false;
       });
 
@@ -88,7 +88,7 @@
             scrollTop: $(this).offset().top
           }, 1);
         }
-        
+
         return false;
       });
 
@@ -124,5 +124,5 @@
       }
 
     }
-  }
+  };
 })(jQuery);
