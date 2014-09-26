@@ -58,6 +58,7 @@
 
                 case 'polygon':
                     fillstyle = true;
+                    break;
                 case 'line':
                     if (shape.points) {
                         $.each(shape.points, function (i, n) {
@@ -71,6 +72,7 @@
 
                 case 'encoded_polygon':
                     fillstyle = true;
+                    break;
                 case 'encoded_line':
                     pa = ( google.maps.geometry ) ? google.maps.geometry.encoding.decodePath(shape.path) : []; // this trinary prevents errors if the google.maps gemoetry library wasn't loaded
                     break;

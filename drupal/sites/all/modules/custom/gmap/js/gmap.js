@@ -288,6 +288,8 @@ Drupal.gmap.addHandler('gmap', function (elem) {
                 break;
             /* falls through */
             case 'Map':
+                opts.mapTypeId = google.maps.MapTypeId.ROADMAP;
+                break;
             default:
                 opts.mapTypeId = google.maps.MapTypeId.ROADMAP;
                 break;
